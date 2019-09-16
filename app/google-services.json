@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "641644150921",
+    "firebase_url": "https://catchmovie-8a577.firebaseio.com",
+    "project_id": "catchmovie-8a577",
+    "storage_bucket": "catchmovie-8a577.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:641644150921:android:b4333febf471fd01350658",
+        "android_client_info": {
+          "package_name": "com.swl.catchmovie"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "641644150921-f9nl9n9sn33c0van8k2khb6hcvn6d5en.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.swl.catchmovie",
+            "certificate_hash": "ba7f9d2f38a1bf1303e645834751cdd282062123"
+          }
+        },
+        {
+          "client_id": "641644150921-utj94838vfnhi753oqtgn2e3to1sinfe.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDYdTinmkiKp0VSrYbCFvcpwQyqwdNcUKg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "641644150921-utj94838vfnhi753oqtgn2e3to1sinfe.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
