@@ -2,111 +2,90 @@ package com.swl.catchmovie;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Patterns;
+import android.util.Log;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.SignInButton;
+import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
 
-//import android.support.annotation.NonNull;
+public class MainActivity extends AppCompatActivity {
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-
-    FirebaseAuth mAuth;
-    EditText editTextEmail, editTextPassword;
-    ProgressBar progressBar;
+    int RC_SIGN_IN = 0;
+    SignInButton signInButton;
+    GoogleSignInClient mGoogleSignInClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mAuth = FirebaseAuth.getInstance();
+        //Initializing Views
+        signInButton = findViewById(R.id.buttonSignIn);
 
-        editTextEmail = (EditText) findViewById(R.id.editTextEmail);
-        editTextPassword = (EditText) findViewById(R.id.editTextPassword);
-        progressBar = (ProgressBar) findViewById(R.id.progressbar);
+        // Configure sign-in to request the user's ID, email address, and basic
+        // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build();
 
-        findViewById(R.id.textViewSignup).setOnClickListener(this);
-        findViewById(R.id.buttonLogin).setOnClickListener(this);
+        // Build a GoogleSignInClient with the options specified by gso.
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
-    }
-
-    private void userLogin() {
-        String email = editTextEmail.getText().toString().trim();
-        String password = editTextPassword.getText().toString().trim();
-
-        if (email.isEmpty()) {
-            editTextEmail.setError("Email is required");
-            editTextEmail.requestFocus();
-            return;
-        }
-
-        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            editTextEmail.setError("Please enter a valid email");
-            editTextEmail.requestFocus();
-            return;
-        }
-
-        if (password.isEmpty()) {
-            editTextPassword.setError("Password is required");
-            editTextPassword.requestFocus();
-            return;
-        }
-
-        if (password.length() < 6) {
-            editTextPassword.setError("Minimum lenght of password should be 6");
-            editTextPassword.requestFocus();
-            return;
-        }
-
-        progressBar.setVisibility(View.VISIBLE);
-
-        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+        signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                progressBar.setVisibility(View.GONE);
-                if (task.isSuccessful()) {
-                    finish();
-                    Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(intent);
-                } else {
-                    Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                }
+            public void onClick(View view) {
+                signIn();
             }
         });
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
+    private void signIn() {
+        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
+        startActivityForResult(signInIntent, RC_SIGN_IN);
+    }
 
-        if (mAuth.getCurrentUser() != null) {
-            finish();
-            startActivity(new Intent(this, ProfileActivity.class));
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        // Result returned from launching the Intent from GoogleSignInClient.getSignInIntent(...);
+        if (requestCode == RC_SIGN_IN) {
+            // The Task returned from this call is always completed, no need to attach
+            // a listener.
+            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+            handleSignInResult(task);
+        }
+    }
+
+    private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
+        try {
+            GoogleSignInAccount account = completedTask.getResult(ApiException.class);
+            // Signed in successfully, show authenticated UI.
+            startActivity(new Intent(MainActivity.this, ProfileActivity.class));
+        } catch (ApiException e) {
+            // The ApiException status code indicates the detailed failure reason.
+            // refer to the GoogleSignInStatusCodes class reference for more info.
+            Log.w("Google Sign In Error", "signInResult:failed code=" + e.getStatusCode());
+            Toast.makeText(MainActivity.this, "Failed", Toast.LENGTH_LONG).show();
         }
     }
 
     @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.textViewSignup:
-                //finish();
-                startActivity(new Intent(this, SignUpActivity.class));
-                break;
-
-            case R.id.buttonLogin:
-                userLogin();
-                break;
+    protected void onStart() {
+        // Check for existing Google Sign In account, if the user is already signed in
+        // the GoogleSignInAccount will be non-null.
+        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
+        if(account != null) {
+            startActivity(new Intent(MainActivity.this, ProfileActivity.class));
         }
+        super.onStart();
     }
 }
