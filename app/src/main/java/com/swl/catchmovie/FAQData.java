@@ -13,9 +13,9 @@ public class FAQData {
         List<String> ansq1 = new ArrayList<String>();
         ansq1.add("sample ans 1");
         List<String> ansq2 = new ArrayList<String>();
-        ansq1.add("sample ans 2");
+        ansq2.add("sample ans 2");
         List<String> ansq3 = new ArrayList<String>();
-        ansq1.add("sample ans 3");
+        ansq3.add("sample ans 3");
 
 
 
