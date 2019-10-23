@@ -64,8 +64,8 @@ public class ProfileActivity extends AppCompatActivity {
         layoutParams.setBehavior(new BottomNavigationBehavior());
 
         // load the store fragment by default
-        toolbar.setTitle("Search");
-        loadFragment(new SearchFragment());
+        toolbar.setTitle("Profile");
+        loadFragment(new ProfileFragment());
 
         // Configure sign-in to request the user's ID, email address, and basic
         // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
