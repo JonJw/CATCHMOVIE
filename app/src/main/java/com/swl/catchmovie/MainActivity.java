@@ -2,90 +2,90 @@ package com.swl.catchmovie;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.Toast;
-
+import android.view.MenuItem;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.common.SignInButton;
-import com.google.android.gms.common.api.ApiException;
-import com.google.android.gms.tasks.Task;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.swl.catchmovie.fragment.MovieFragment;
+import com.swl.catchmovie.fragment.ProfileFragment;
+import com.swl.catchmovie.fragment.PromotionFragment;
+import com.swl.catchmovie.fragment.SearchFragment;
+import com.swl.catchmovie.helper.BottomNavigationBehavior;
 
 public class MainActivity extends AppCompatActivity {
 
-    int RC_SIGN_IN = 0;
-    SignInButton signInButton;
-    GoogleSignInClient mGoogleSignInClient;
+    private ActionBar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
 
-        //Initializing Views
-        signInButton = findViewById(R.id.buttonSignIn);
+        toolbar = getSupportActionBar();
 
-        // Configure sign-in to request the user's ID, email address, and basic
-        // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestEmail()
-                .build();
+        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
-        // Build a GoogleSignInClient with the options specified by gso.
-        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+        // attaching bottom sheet behaviour - hide / show on scroll
+        CoordinatorLayout.LayoutParams layoutParams = (CoordinatorLayout.LayoutParams) navigation.getLayoutParams();
+        layoutParams.setBehavior(new BottomNavigationBehavior());
 
-        signInButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                signIn();
+        // load the store fragment by default
+        toolbar.setTitle("Movie");
+        loadFragment(new MovieFragment());
+    }
+
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+            = new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            Fragment fragment;
+            switch (item.getItemId()) {
+                case R.id.navigation_search:
+                    toolbar.setTitle("Search");
+                    fragment = new SearchFragment();
+                    loadFragment(fragment);
+                    return true;
+                case R.id.navigation_movies:
+                    toolbar.setTitle("Movies");
+                    fragment = new MovieFragment();
+                    loadFragment(fragment);
+                    return true;
+                case R.id.navigation_promo:
+                    toolbar.setTitle("Promotions");
+                    fragment = new PromotionFragment();
+                    loadFragment(fragment);
+                    return true;
+                case R.id.navigation_profile:
+                    toolbar.setTitle("Profile");
+                    fragment = new ProfileFragment();
+                    Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
+                    startActivity(intent);
+                    loadFragment(fragment);
+                    return true;
             }
-        });
-    }
 
-    private void signIn() {
-        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
-        startActivityForResult(signInIntent, RC_SIGN_IN);
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        // Result returned from launching the Intent from GoogleSignInClient.getSignInIntent(...);
-        if (requestCode == RC_SIGN_IN) {
-            // The Task returned from this call is always completed, no need to attach
-            // a listener.
-            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
-            handleSignInResult(task);
+            return false;
         }
+    };
+
+    /**
+     * loading fragment into FrameLayout
+     *
+     * @param fragment
+     */
+    private void loadFragment(Fragment fragment) {
+        // load fragment
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.frame_container, fragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 
-    private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
-        try {
-            GoogleSignInAccount account = completedTask.getResult(ApiException.class);
-            // Signed in successfully, show authenticated UI.
-            startActivity(new Intent(MainActivity.this, ProfileActivity.class));
-        } catch (ApiException e) {
-            // The ApiException status code indicates the detailed failure reason.
-            // refer to the GoogleSignInStatusCodes class reference for more info.
-            Log.w("Google Sign In Error", "signInResult:failed code=" + e.getStatusCode());
-            Toast.makeText(MainActivity.this, "Failed", Toast.LENGTH_LONG).show();
-        }
-    }
-
-    @Override
-    protected void onStart() {
-        // Check for existing Google Sign In account, if the user is already signed in
-        // the GoogleSignInAccount will be non-null.
-        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
-        if(account != null) {
-            startActivity(new Intent(MainActivity.this, ProfileActivity.class));
-        }
-        super.onStart();
-    }
 }

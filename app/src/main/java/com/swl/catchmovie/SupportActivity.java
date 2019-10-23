@@ -9,12 +9,7 @@ import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.RatingBar;
 import android.widget.Toast;
-
-
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

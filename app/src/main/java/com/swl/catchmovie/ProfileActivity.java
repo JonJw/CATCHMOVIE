@@ -3,15 +3,18 @@ package com.swl.catchmovie;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import com.bumptech.glide.Glide;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -19,8 +22,17 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.swl.catchmovie.fragment.MovieFragment;
+import com.swl.catchmovie.fragment.ProfileFragment;
+import com.swl.catchmovie.fragment.PromotionFragment;
+import com.swl.catchmovie.fragment.SearchFragment;
+import com.swl.catchmovie.helper.BottomNavigationBehavior;
 
 public class ProfileActivity extends AppCompatActivity {
+
+
+    private ActionBar toolbar;
 
     GoogleSignInClient mGoogleSignInClient;
     //ProfileController profileController;
@@ -42,6 +54,18 @@ public class ProfileActivity extends AppCompatActivity {
         //idTV = findViewById(R.id.id);
         photoIV = findViewById(R.id.photo);
 
+        toolbar = getSupportActionBar();
+        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
+
+        // attaching bottom sheet behaviour - hide / show on scroll
+        CoordinatorLayout.LayoutParams layoutParams = (CoordinatorLayout.LayoutParams) navigation.getLayoutParams();
+        layoutParams.setBehavior(new BottomNavigationBehavior());
+
+        // load the store fragment by default
+        toolbar.setTitle("Search");
+        loadFragment(new SearchFragment());
 
         // Configure sign-in to request the user's ID, email address, and basic
         // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
@@ -91,10 +115,66 @@ public class ProfileActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         Toast.makeText(ProfileActivity.this,"Successfully signed out",Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(ProfileActivity.this, MainActivity.class));
+                        startActivity(new Intent(ProfileActivity.this, LoginActivity.class));
                         finish();
                     }
                 });
+    }
+
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+            = new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            Fragment fragment;
+            switch (item.getItemId()) {
+                case R.id.navigation_search:
+                    toolbar.setTitle("Search");
+                    fragment = new SearchFragment();
+                    loadFragment(fragment);
+                    return true;
+                case R.id.navigation_movies:
+                    toolbar.setTitle("Movies");
+                    fragment = new MovieFragment();
+                    loadFragment(fragment);
+                    Intent intentMovie = new Intent(ProfileActivity.this, MainActivity.class);
+                    startActivity(intentMovie);
+                    intentMovie.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK |Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    finishAffinity();
+                    return true;
+                case R.id.navigation_promo:
+                    toolbar.setTitle("Promotions");
+                    fragment = new PromotionFragment();
+                    loadFragment(fragment);
+                    //Intent intentPromo = new Intent(ProfileActivity.this, PromotionFragment.class);
+                    //startActivity(intentPromo);
+                    return true;
+                case R.id.navigation_profile:
+                    toolbar.setTitle("Profile");
+                    fragment = new ProfileFragment();
+                    loadFragment(fragment);
+                    //Intent intentProfile = new Intent(ProfileActivity.this, ProfileActivity.class);
+                   // startActivity(intentProfile);
+                    //intentProfile.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK |Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                   // finishAffinity();
+                    return true;
+            }
+
+            return false;
+        }
+    };
+
+    /**
+     * loading fragment into FrameLayout
+     *
+     * @param fragment
+     */
+    private void loadFragment(Fragment fragment) {
+        // load fragment
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.frame_container, fragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 
     //TODO:
@@ -102,6 +182,8 @@ public class ProfileActivity extends AppCompatActivity {
     {
         startActivity(new Intent(ProfileActivity.this, SupportActivity.class));
     }
+
+
 
     /*
     private void displayUserProfile()

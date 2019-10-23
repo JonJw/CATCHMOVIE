@@ -8,4 +8,7 @@
     <color name="colorCustomCyan">#00a2ff</color>
     <color name="colorcustomdarkcyan">#0183ce</color>
     <color name="colorcustomyellow">#ffcc00</color>
+    <color name="bgBottomNavigation">#72899F</color>
+    <color name="bgColor">#0C0719</color>
+    <color name="txtColor">#FFFFFF</color>
 </resources>
