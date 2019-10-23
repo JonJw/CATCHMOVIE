@@ -8,7 +8,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#00000000">
+        android:background="@color/bgColor">
+
 
         <TextView
             android:id="@+id/support"
@@ -18,6 +19,7 @@
             android:fontFamily="sans-serif-condensed-medium"
             android:text="Support"
             android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            android:textColor="@color/colorWhite"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
@@ -30,6 +32,7 @@
             android:layout_marginTop="104dp"
             android:fontFamily="sans-serif-condensed"
             android:text="Need help in using the app? Check out our FAQ."
+            android:textColor="@color/colorWhite"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -42,44 +45,48 @@
             android:id="@+id/rateapp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="596dp"
             android:fontFamily="sans-serif-condensed"
             android:text="How would you rate our app?"
+            android:textColor="@color/colorWhite"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.796" />
 
         <ExpandableListView
             android:id="@+id/expandableListView"
-            android:layout_width="357dp"
-            android:layout_height="405dp"
+            android:layout_width="362dp"
+            android:layout_height="355dp"
             android:layout_marginStart="24dp"
             android:layout_marginLeft="24dp"
-            android:divider="@android:color/darker_gray"
+            android:background="?attr/colorButtonNormal"
+            android:divider="@color/colorBlack"
             android:dividerHeight="0.5dp"
             android:indicatorLeft="?android:attr/expandableListPreferredItemIndicatorLeft"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.1"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/textView2"
+            app:layout_constraintVertical_bias="0.152" />
 
         <RatingBar
             android:id="@+id/ratingBar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="36dp"
+            android:layout_width="240dp"
+            android:layout_height="55dp"
+            android:background="@color/bgColor"
+            android:backgroundTint="@color/colorBlack"
             android:numStars="5"
+            android:progressBackgroundTint="@color/colorWhite"
+            android:progressTint="@color/colorcustomyellow"
             android:stepSize="1"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.971" />
+            app:layout_constraintVertical_bias="0.886" />
 
         <Button
             android:id="@+id/submitrating"
@@ -88,6 +95,7 @@
             android:text="Submit Rating"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.517"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.976" />

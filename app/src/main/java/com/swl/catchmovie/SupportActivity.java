@@ -101,11 +101,15 @@ public class SupportActivity extends AppCompatActivity {
                                             @Override
                                             public void onClick(View view) {
                                                 Toast.makeText(getApplicationContext(),
-                                                        "Rating submitted!",
+                                                        "Thank you for rating our app!",
                                                         Toast.LENGTH_SHORT).show();
+                                                startActivity(new Intent(SupportActivity.this, ProfileActivity.class));
                                             }
                                         }
+
         );
+
+
     }
 
     private void setBacktoProfile()
