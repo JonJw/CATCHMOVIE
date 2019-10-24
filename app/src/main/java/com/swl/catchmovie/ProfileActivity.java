@@ -180,7 +180,13 @@ public class ProfileActivity extends AppCompatActivity {
     //TODO:
     private void viewSupport()
     {
-        startActivity(new Intent(ProfileActivity.this, SupportActivity.class));
+        GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(ProfileActivity.this);
+        Intent intent = new Intent(ProfileActivity.this, SupportActivity.class);
+        if (acct !=null)
+        {
+            intent.putExtra("USER_ID", acct.getId());
+        }
+        startActivity(intent);
     }
 
 

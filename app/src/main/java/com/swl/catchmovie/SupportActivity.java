@@ -10,6 +10,10 @@ import android.widget.ExpandableListView;
 import android.widget.RatingBar;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.swl.catchmovie.FirebaseDAO.CatchMovieDAO;
+import com.swl.catchmovie.FirebaseDAO.RatingDAO;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -23,22 +27,31 @@ public class SupportActivity extends AppCompatActivity {
     RatingBar ratingBar;
     Button submitRating;
     Button backtoProfile;
+    CatchMovieDAO ratingDAO;
+    UserRatingData userRatingData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_support);
 
+        userRatingData = new UserRatingData();
+        // Get user id
+        String userID = getIntent().getStringExtra("USER_ID");
+        userRatingData.setUserID(userID);
+
         setFAQ();
         setRatingBar();
         setSubmitRating();
         setBacktoProfile();
+
+        ratingDAO = new RatingDAO();
     }
 
     private void setFAQ()
     {
         expandableListView = (ExpandableListView) findViewById(R.id.expandableListView);
-        expandableListDetail = FAQData.getFAQData();
+        expandableListDetail = FAQDataManager.getFAQData();
         expandableListTitle = new ArrayList<String>(expandableListDetail.keySet());
         expandableListAdapter = new CustomExpandableListAdapter(this, expandableListTitle, expandableListDetail);
         expandableListView.setAdapter(expandableListAdapter);
@@ -86,6 +99,7 @@ public class SupportActivity extends AppCompatActivity {
         ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float v, boolean b) {
+                userRatingData.setUserRating(v);
                 Toast.makeText(getApplicationContext(),
                         "You rate "+v,
                         Toast.LENGTH_SHORT).show();
@@ -100,10 +114,15 @@ public class SupportActivity extends AppCompatActivity {
         submitRating.setOnClickListener(new View.OnClickListener() {
                                             @Override
                                             public void onClick(View view) {
+
                                                 Toast.makeText(getApplicationContext(),
                                                         "Thank you for rating our app!",
                                                         Toast.LENGTH_SHORT).show();
+
                                                 startActivity(new Intent(SupportActivity.this, ProfileActivity.class));
+
+                                                // Save to Firebase
+                                                ratingDAO.save(userRatingData);
                                             }
                                         }
 
