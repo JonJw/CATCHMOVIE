@@ -201,7 +201,10 @@ public class MovieFragment extends Fragment {
             Glide.with(context)
                     .load(movie.getImage())
                     .into(holder.thumbnail);
-            holder.thumbnail.setOnClickListener(new View.OnClickListener(){
+            holder.thumbnail.setOnClickListener(
+
+
+                    new View.OnClickListener(){
                 @Override
                 public void onClick(View v) {
                     Log.d(TAG, "onClick: clicked on: " + movie.getTitle());

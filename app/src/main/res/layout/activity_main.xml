@@ -11,8 +11,8 @@
         android:id="@+id/frame_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        android:background="@color/bgColor"/>
+        android:background="@color/bgColor"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/navigation"
@@ -20,8 +20,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:background="?android:attr/windowBackground"
-        app:itemBackground="@color/bgBottomNavigation"
         android:foreground="?attr/selectableItemBackground"
+        app:itemBackground="@color/bgBottomNavigation"
         app:itemIconTint="@android:color/white"
         app:itemTextColor="@android:color/white"
         app:menu="@menu/navigation" />

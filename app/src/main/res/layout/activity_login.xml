@@ -8,7 +8,6 @@
     android:orientation="vertical"
     tools:context="com.swl.catchmovie.LoginActivity">
 
-
     <Button
         android:id="@+id/buttonSignOut"
         android:layout_width="match_parent"

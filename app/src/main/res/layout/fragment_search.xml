@@ -2,15 +2,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.swl.catchmovie.fragment.SearchFragment"
-    android:background="@color/bgColor">
+    android:background="@color/bgColor"
+    tools:context="com.swl.catchmovie.fragment.SearchFragment">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
         android:text="Search"
-        android:textSize="22dp"
-        android:textColor="@color/txtColor"/>
+        android:textColor="@color/txtColor"
+        android:textSize="22dp" />
 
 </FrameLayout>

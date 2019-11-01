@@ -5,8 +5,10 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.bumptech.glide.Glide;
 
 public class MovieDetailsActivity extends AppCompatActivity {
@@ -26,20 +28,19 @@ public class MovieDetailsActivity extends AppCompatActivity {
     }
 
 
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == android.R.id.home){
+        if (id == android.R.id.home) {
             //ends the activity
             this.finish();
         }
         return super.onOptionsItemSelected(item);
     }
 
-    private void getIncomingIntent(){
+    private void getIncomingIntent() {
         Log.d(TAG, "getIncomingIntent:checking for incoming intents.");
-        if(getIntent().hasExtra("image_url") && getIntent().hasExtra("movie_name")){
+        if (getIntent().hasExtra("image_url") && getIntent().hasExtra("movie_name")) {
             Log.d(TAG, "getIncomingIntent: found intent extras.");
             String imageurl = getIntent().getStringExtra("image_url");
             String moviename = getIntent().getStringExtra("movie_name");
@@ -53,7 +54,7 @@ public class MovieDetailsActivity extends AppCompatActivity {
         }
     }
 
-    private void setImage(String imageurl, String moviename, String movieadvice, String movielanguage, String movieduration, String moviesynopsis, String moviedirector, String moviecast){
+    private void setImage(String imageurl, String moviename, String movieadvice, String movielanguage, String movieduration, String moviesynopsis, String moviedirector, String moviecast) {
         Log.d(TAG, "setImage: setting to image and name to widgets.");
 
         TextView image = findViewById(R.id.movie_title);
@@ -72,7 +73,7 @@ public class MovieDetailsActivity extends AppCompatActivity {
         TextView synopsis = findViewById(R.id.movie_synopsis);
         moviecast = moviecast.replace("\n", " ");
         moviecast = moviecast.replace("  ", "");
-        synopsis.append(": " + moviesynopsis + "\n" + "\n" + moviedirector + "\n"+  "\n" + " " + moviecast);
+        synopsis.append(": " + moviesynopsis + "\n" + "\n" + moviedirector + "\n" + "\n" + " " + moviecast);
 
         //TextView director = findViewById(R.id.movie_director);
         //director.setText(moviedirector);

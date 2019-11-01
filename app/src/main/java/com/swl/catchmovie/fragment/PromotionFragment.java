@@ -6,10 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import androidx.fragment.app.Fragment;
-
-import com.swl.catchmovie.ProfileActivity;
+import com.swl.catchmovie.PromotionActivity;
 import com.swl.catchmovie.R;
 
 public class PromotionFragment extends Fragment {
@@ -39,11 +37,19 @@ public class PromotionFragment extends Fragment {
         txtOpen.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                Intent intent = new Intent(getActivity(), ProfileActivity.class);
+                Intent intent = new Intent(getActivity(), PromotionActivity.class);
                 //intent.putExtra("Testing","123");
                 startActivity(intent);
             }
         });
         return view;
+    }
+    //@Override
+    public void onClick (View v) {
+
+        Intent i = new Intent(getActivity(), PromotionActivity.class);
+        startActivity(i);
+        //((Activity) getActivity()).overridePendingTransition(0, 0);
+
     }
 }
