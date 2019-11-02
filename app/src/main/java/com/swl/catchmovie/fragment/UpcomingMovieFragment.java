@@ -6,11 +6,6 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Rect;
 import android.os.Bundle;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -21,6 +16,12 @@ import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -36,37 +37,27 @@ import java.util.List;
 
 import com.swl.catchmovie.Movie;
 import com.swl.catchmovie.MovieDetailsActivity;
-import com.swl.catchmovie.app.MyApplication;
 import com.swl.catchmovie.R;
+import com.swl.catchmovie.app.MyApplication;
 
-public class MovieFragment extends Fragment implements PopupMenu.OnMenuItemClickListener {
+public class UpcomingMovieFragment extends Fragment implements PopupMenu.OnMenuItemClickListener {
 
-    private static final String TAG = "MovieFragment";
+    private static final String TAG = "UpcomingMovieFragment";
     //private static final String TAG = MovieFragment.class.getSimpleName();
 
     // url to fetch shopping items
-    private static final String URL = "https://jsonstorage.net/api/items/d0ddd20a-c3d9-4696-822a-f22cf8c3b239";
+    private static final String URL = "https://api.myjson.com/bins/kxes4";
 
     private RecyclerView recyclerView;
     private List<Movie> itemsList;
     private StoreAdapter mAdapter;
-    private boolean setBySearch = false;
-    private String setBySearchTitle = "";
-    private int setBySearchPosition;
 
-    public MovieFragment() {
+    public UpcomingMovieFragment() {
         // Required empty public constructor
     }
-    public MovieFragment(int position)
-    {
-        if(position != -1)
-        {
-            setBySearch = true;
-            setBySearchPosition = position;
-        }
-    }
-    public static MovieFragment newInstance(String param1, String param2) {
-        MovieFragment fragment = new MovieFragment();
+
+    public static UpcomingMovieFragment newInstance(String param1, String param2) {
+        UpcomingMovieFragment fragment = new UpcomingMovieFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
@@ -81,7 +72,7 @@ public class MovieFragment extends Fragment implements PopupMenu.OnMenuItemClick
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_movielist, container, false);
+        View view = inflater.inflate(R.layout.fragment_upcomingmovies, container, false);
 
         recyclerView = view.findViewById(R.id.recycler_view);
 
@@ -185,6 +176,7 @@ public class MovieFragment extends Fragment implements PopupMenu.OnMenuItemClick
         return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, r.getDisplayMetrics()));
     }
 
+
     /**
      * RecyclerView adapter class to render items
      * This class can go into another separate class, but for simplicity
@@ -223,59 +215,34 @@ public class MovieFragment extends Fragment implements PopupMenu.OnMenuItemClick
 
         }
 
-
         @Override
         public void onBindViewHolder(MyViewHolder holder, final int position) {
-            if(setBySearch)
-            {
-                final Movie movie = movieList.get(setBySearchPosition);
-                holder.name.setText(movie.getTitle());
-                Glide.with(context)
-                        .load(movie.getImage())
-                        .into(holder.thumbnail);
-                Toast.makeText(context, movie.getTitle(), Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(context, MovieDetailsActivity.class);
-                intent.putExtra("image_url", movie.getImage());
-                intent.putExtra("movie_name", movie.getTitle());
-                intent.putExtra("movie_advice", movie.getMovieAdvice());
-                intent.putExtra("movie_duration", movie.getMovieDuration());
-                intent.putExtra("movie_director", movie.getMovieDirector());
-                intent.putExtra("movie_cast", movie.getMovieCast());
-                intent.putExtra("movie_distributor", movie.getMovieDistributor());
-                intent.putExtra("movie_language", movie.getMovieLanguage());
-                intent.putExtra("movie_releasedate", movie.getMovieReleaseDate());
-                intent.putExtra("movie_synopsis", movie.getMovieSynopsis());
-                context.startActivity(intent);
-                setBySearch = false;
-            }
-            else {
-                final Movie movie = movieList.get(position);
-                holder.name.setText(movie.getTitle());
+            final Movie movie = movieList.get(position);
+            holder.name.setText(movie.getTitle());
+            Glide.with(context)
+                    .load(movie.getImage())
+                    .into(holder.thumbnail);
+            holder.thumbnail.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v) {
+                    Log.d(TAG, "onClick: clicked on: " + movie.getTitle());
 
-                Glide.with(context)
-                        .load(movie.getImage())
-                        .into(holder.thumbnail);
-                holder.thumbnail.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Log.d(TAG, "onClick: clicked on: " + movie.getTitle());
+                    Toast.makeText(context, movie.getTitle(), Toast.LENGTH_SHORT).show();
 
-                        Toast.makeText(context, movie.getTitle(), Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(context, MovieDetailsActivity.class);
-                        intent.putExtra("image_url", movie.getImage());
-                        intent.putExtra("movie_name", movie.getTitle());
-                        intent.putExtra("movie_advice", movie.getMovieAdvice());
-                        intent.putExtra("movie_duration", movie.getMovieDuration());
-                        intent.putExtra("movie_director", movie.getMovieDirector());
-                        intent.putExtra("movie_cast", movie.getMovieCast());
-                        intent.putExtra("movie_distributor", movie.getMovieDistributor());
-                        intent.putExtra("movie_language", movie.getMovieLanguage());
-                        intent.putExtra("movie_releasedate", movie.getMovieReleaseDate());
-                        intent.putExtra("movie_synopsis", movie.getMovieSynopsis());
-                        context.startActivity(intent);
-                    }
-                });
-            }
+                    Intent intent = new Intent(context, MovieDetailsActivity.class);
+                    intent.putExtra("image_url", movie.getImage());
+                    intent.putExtra("movie_name", movie.getTitle());
+                    intent.putExtra("movie_advice", movie.getMovieAdvice());
+                    intent.putExtra("movie_duration", movie.getMovieDuration());
+                    intent.putExtra("movie_director", movie.getMovieDirector());
+                    intent.putExtra("movie_cast", movie.getMovieCast());
+                    intent.putExtra("movie_distributor", movie.getMovieDistributor());
+                    intent.putExtra("movie_language", movie.getMovieLanguage());
+                    intent.putExtra("movie_releasedate", movie.getMovieReleaseDate());
+                    intent.putExtra("movie_synopsis", movie.getMovieSynopsis());
+                    context.startActivity(intent);
+                }
+            });
         }
 
         @Override
@@ -283,7 +250,6 @@ public class MovieFragment extends Fragment implements PopupMenu.OnMenuItemClick
             return movieList.size();
         }
     }
-
 
     public void showPopUp(View v){
         PopupMenu popup = new PopupMenu(getActivity(), v);
@@ -302,6 +268,9 @@ public class MovieFragment extends Fragment implements PopupMenu.OnMenuItemClick
             case R.id.nowshowing:
                 status.setText("Now Showing");
                 Toast.makeText(getActivity(), "NowShowing Movies", Toast.LENGTH_SHORT).show();
+                fragment = new MovieFragment();
+                Log.d(TAG, "Calling loadFragment");
+                loadFragment(fragment);
                 return true;
             case R.id.upshowing:
                 status.setText("Upcoming");

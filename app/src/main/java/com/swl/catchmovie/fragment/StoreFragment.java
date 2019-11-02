@@ -63,7 +63,7 @@ public class StoreFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_store, container, false);
+        View view = inflater.inflate(R.layout.fragment_movielist, container, false);
 
         recyclerView = view.findViewById(R.id.recycler_view);
         itemsList = new ArrayList<>();

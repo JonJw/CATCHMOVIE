@@ -1,47 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    android:id="@+id/layout_container"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#303030"
-    tools:context="com.swl.catchmovie.fragment.MovieFragment">
+    tools:context=".MovieDetailsActivity"
+    android:background="#303030">
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
-        android:id="@+id/appbarlayout_id"
+    <com.google.android.material.appbar.AppBarLayout
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+        android:id="@+id/appbarlayout_id">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
-            android:id="@+id/collapsingtoolbar_id"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:contentScrim="?attr/colorPrimary"
-            app:expandedTitleMarginEnd="64dp"
-            app:expandedTitleMarginStart="35dp"
+            android:id="@+id/collapsingtoolbar_id"
             app:layout_scrollFlags="exitUntilCollapsed|scroll"
-            app:title="Synopsis">
+            app:title="Synopsis"
+            app:contentScrim="?attr/colorPrimary"
+            app:expandedTitleMarginStart="35dp"
+            app:expandedTitleMarginEnd="64dp"
+            >
 
             <androidx.appcompat.widget.Toolbar
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:theme="@style/ThemeOverlay.AppCompat.Light"
-                app:layout_collapseMode="pin"></androidx.appcompat.widget.Toolbar>
+                app:layout_collapseMode="pin"
+                android:theme="@style/ThemeOverlay.AppCompat.Light">
+            </androidx.appcompat.widget.Toolbar>
 
 
             <LinearLayout
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="50dp">
+                android:padding="50dp"
+                >
 
 
                 <ImageView
-                    android:id="@+id/movie_image"
                     android:layout_width="100dp"
                     android:layout_height="match_parent"
-                    android:background="@drawable/loading_shape" />
+                    android:background="@drawable/loading_shape"
+                    android:id="@+id/movie_image"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -91,10 +96,19 @@
                         android:textColor="#fff"
                         android:textSize="15sp"
                         android:textStyle="bold" />
+
+
                 </LinearLayout>
+
+
             </LinearLayout>
+
+
         </com.google.android.material.appbar.CollapsingToolbarLayout>
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
+    </com.google.android.material.appbar.AppBarLayout>
+
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nestedScrollView"
@@ -103,20 +117,27 @@
         android:padding="16dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
+
         <TextView
             android:id="@+id/movie_synopsis"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="Synopsis"
             android:textColor="#fff" />
+
     </androidx.core.widget.NestedScrollView>
 
     <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
+        android:id="@+id/btnShowtimes"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:text="Show Times"></Button>
+        android:text="View Show Time"
+        android:textSize="20sp"
+        android:onClick="viewShowTimes"
+        android:background="@color/colorPrimary"
+        android:textColor="@color/txtColor"
+        android:layout_gravity="bottom">
+    </Button>
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
-
