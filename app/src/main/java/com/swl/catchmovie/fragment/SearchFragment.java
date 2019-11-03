@@ -1,4 +1,5 @@
 package com.swl.catchmovie.fragment;
+
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
@@ -37,7 +38,8 @@ public class SearchFragment extends Fragment {
     //private static final String TAG = MovieFragment.class.getSimpleName();
 
     // url to fetch shopping items
-    private static final String URL = "https://jsonstorage.net/api/items/5aefe02e-e550-4e88-a44e-166c0bdb64a3";
+    // private static MovieFragment movieFragment = new MovieFragment();
+
 
     private List<Movie> itemsList;
     private ArrayAdapter<String> adapter;
@@ -50,7 +52,15 @@ public class SearchFragment extends Fragment {
     private ListView listViewDate;
     private boolean clickedSelectMovie = false;
     private boolean clickedSelectDate = false;
-    private MovieFragment movieFragment = new MovieFragment();
+
+    private String movieToGo = "";
+    private boolean choosenMovie = false;
+    private boolean choosenDate = false;
+
+    private static MovieFragment movieFragment = new MovieFragment();
+
+    private static final String URL = movieFragment.getURL();
+    // private static final String URL = "https://jsonstorage.net/api/items/a2c5782f-dd3d-4c2c-aa17-250a07ab8cbb";
     int clickedMovie = -1;
     int clickedDate = -1;
     public SearchFragment() {
@@ -99,6 +109,7 @@ public class SearchFragment extends Fragment {
             public void onClick(View view) {
                 if(clickedSelectMovie == false)
                 {
+                    listViewDate.setVisibility(View.INVISIBLE);
                     searchViewDate.setVisibility(View.INVISIBLE);
                     listViewMovie.setVisibility(View.VISIBLE);
                     searchButton.setVisibility(View.INVISIBLE);
@@ -107,6 +118,7 @@ public class SearchFragment extends Fragment {
                 }
                 else
                 {
+                    listViewDate.setVisibility(View.INVISIBLE);
                     searchViewDate.setVisibility(View.VISIBLE);
                     listViewMovie.setVisibility(View.INVISIBLE);
                     searchButton.setVisibility(View.VISIBLE);
@@ -124,12 +136,14 @@ public class SearchFragment extends Fragment {
             {
                 if(clickedSelectDate == false)
                 {
+                    listViewMovie.setVisibility(View.INVISIBLE);
                     listViewDate.setVisibility(View.VISIBLE);
                     searchButton.setVisibility(View.INVISIBLE);
                     clickedSelectDate = true;
                 }
                 else
                 {
+                    listViewMovie.setVisibility(View.INVISIBLE);
                     listViewDate.setVisibility(View.INVISIBLE);
                     searchButton.setVisibility(View.VISIBLE);
                     clickedSelectDate = false;
@@ -142,8 +156,19 @@ public class SearchFragment extends Fragment {
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MainActivity mainActivity = new MainActivity();
-                loadFragment(new MovieFragment(clickedMovie));
+
+                if(choosenMovie == true && choosenDate == false)
+                {
+                    MainActivity mainActivity = new MainActivity();
+                    loadFragment(new MovieFragment(clickedMovie));
+                    Log.d(TAG, "Go to moviefragment");
+                }
+                else if (choosenMovie == true && choosenDate == true)
+                {
+                    MainActivity mainActivity = new MainActivity();
+                    loadFragment(new MovieShowTimeFragment(movieToGo, clickedDate));
+                    Log.d(TAG, "Go to movieshowtime");
+                }
             }
         });
 /*
@@ -189,6 +214,10 @@ public class SearchFragment extends Fragment {
             {
                 searchViewMovie.setText(list.get(i));
                 clickedMovie = i;
+                Movie movie = itemsList.get(i);
+                movieToGo = movie.getTitle();
+                Log.d(TAG, "Movie to go: " + movieToGo);
+                choosenMovie = true;
                 Toast.makeText(getActivity(), "Number of movie: " + clickedMovie, Toast.LENGTH_SHORT).show();
                 listViewMovie.setVisibility(View.INVISIBLE);
                 searchViewDate.setVisibility(View.VISIBLE);
@@ -202,6 +231,8 @@ public class SearchFragment extends Fragment {
             {
                 searchViewDate.setText(listDate.get(position));
                 clickedDate = position;
+                Log.d(TAG, "Get clickedDate position " + clickedDate);
+                choosenDate = true;
                 listViewDate.setVisibility(View.INVISIBLE);
                 searchButton.setVisibility(View.VISIBLE);
             }

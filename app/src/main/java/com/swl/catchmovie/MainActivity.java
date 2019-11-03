@@ -62,8 +62,8 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.navigation_promo:
                     toolbar.setTitle("Promotions");
                     fragment = new PromotionFragment();
-                    Intent intentPromo = new Intent(MainActivity.this, PromotionActivity.class);
-                    startActivity(intentPromo);
+                    //Intent intentPromo = new Intent(MainActivity.this, PromotionActivity.class);
+                    //startActivity(intentPromo);
                     loadFragment(fragment);
                     return true;
                 case R.id.navigation_profile:
