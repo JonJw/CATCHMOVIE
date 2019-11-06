@@ -44,6 +44,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
               startActivity(intent);
           }
         });
+        view.performClick();
         return view;
     }
 
