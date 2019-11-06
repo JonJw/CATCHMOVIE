@@ -1,7 +1,9 @@
 package com.swl.catchmovie.fragment;
 
 
+import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.core.graphics.ColorUtils;
@@ -10,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -327,6 +330,38 @@ public class MovieShowTimeFragment extends Fragment  {
         });
 
         MyApplication.getInstance().addToRequestQueue(request);
+
+        listViewShowtime.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+            {
+                    String selectedItem = (String) parent.getItemAtPosition(position);
+                    Intent viewIntent = null;
+                    if(selectedItem.contains("GV"))
+                    {
+                        viewIntent = new Intent("android.intent.action.VIEW",
+                                        Uri.parse("https://www.gv.com.sg/GVBuyTickets#/"));
+                    }
+                    else if(selectedItem.contains("Shaw"))
+                    {
+                        viewIntent = new Intent("android.intent.action.VIEW",
+                                Uri.parse("https://shaw.sg/Showtimes/"));
+                    }
+                    else if(selectedItem.contains("Filmgarde"))
+                    {
+                        viewIntent = new Intent("android.intent.action.VIEW",
+                                Uri.parse("https://fgcineplex.com.sg/buyticket"));
+                    }
+                    else if(selectedItem.contains("Cathay"))
+                    {
+                        viewIntent = new Intent("android.intent.action.VIEW",
+                                Uri.parse("https://www.cathaycineplexes.com.sg/showtimes.aspx"));
+                    }
+                    startActivity(viewIntent);
+
+            }
+        });
+
 
         day1.setOnClickListener(new View.OnClickListener() {
             @Override
