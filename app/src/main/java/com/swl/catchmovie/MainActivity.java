@@ -21,6 +21,7 @@ import com.swl.catchmovie.helper.BottomNavigationBehavior;
 public class MainActivity extends AppCompatActivity {
 
     private ActionBar toolbar;
+    private BottomNavigationView navigation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
         toolbar = getSupportActionBar();
 
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         // attaching bottom sheet behaviour - hide / show on scroll
@@ -69,8 +70,6 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.navigation_profile:
                     toolbar.setTitle("Profile");
                     fragment = new ProfileFragment();
-                    Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
-                    startActivity(intent);
                     loadFragment(fragment);
                     return true;
             }
@@ -79,11 +78,21 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
+
+    public BottomNavigationView getNavigation() {
+        return navigation;
+    }
+
+    public BottomNavigationView.OnNavigationItemSelectedListener getmOnNavigationItemSelectedListener() {
+        return mOnNavigationItemSelectedListener;
+    }
+
     /**
      * loading fragment into FrameLayout
      *
      * @param fragment
      */
+
     private void loadFragment(Fragment fragment) {
         // load fragment
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
