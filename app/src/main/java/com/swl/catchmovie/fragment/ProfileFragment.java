@@ -113,6 +113,7 @@ public class ProfileFragment extends Fragment {
             }
         });
 
+        view.performClick();   
         return view;
     }
 

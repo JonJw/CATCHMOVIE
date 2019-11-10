@@ -14,6 +14,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.swl.catchmovie.fragment.MovieFragment;
 import com.swl.catchmovie.fragment.ProfileFragment;
+import com.swl.catchmovie.ProfileActivity;
 import com.swl.catchmovie.fragment.PromotionFragment;
 import com.swl.catchmovie.fragment.SearchFragment;
 import com.swl.catchmovie.helper.BottomNavigationBehavior;
@@ -38,9 +39,9 @@ public class MainActivity extends AppCompatActivity {
         CoordinatorLayout.LayoutParams layoutParams = (CoordinatorLayout.LayoutParams) navigation.getLayoutParams();
         layoutParams.setBehavior(new BottomNavigationBehavior());
 
-        // load the store fragment by default
-        toolbar.setTitle("Movie");
-        loadFragment(new MovieFragment());
+        // load the profile fragment by default
+        toolbar.setTitle("Search");
+        loadFragment(new SearchFragment());
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -62,15 +63,22 @@ public class MainActivity extends AppCompatActivity {
                     return true;
                 case R.id.navigation_promo:
                     toolbar.setTitle("Promotions");
-                    fragment = new PromotionFragment();
-                    //Intent intentPromo = new Intent(MainActivity.this, PromotionActivity.class);
-                    //startActivity(intentPromo);
-                    loadFragment(fragment);
+                    //fragment = new PromotionFragment();
+                    Intent intentPromo = new Intent(MainActivity.this, PromotionActivity.class);
+                    startActivity(intentPromo);
+                    //loadFragment(fragment);
                     return true;
                 case R.id.navigation_profile:
                     toolbar.setTitle("Profile");
+<<<<<<< redirectiontowebsite
                     fragment = new ProfileFragment();
                     loadFragment(fragment);
+=======
+                    //fragment = new ProfileFragment();
+                    Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
+                    startActivity(intent);
+                    //loadFragment(fragment);
+>>>>>>> master
                     return true;
             }
 
