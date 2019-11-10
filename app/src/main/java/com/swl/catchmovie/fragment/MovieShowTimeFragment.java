@@ -16,6 +16,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,7 +43,7 @@ public class MovieShowTimeFragment extends Fragment  {
     //private static final String TAG = MovieFragment.class.getSimpleName();
 
     // url to fetch movie show time
-    private static final String URL = "https://jsonstorage.net/api/items/785cd019-0fdb-4bf6-87d1-1e934fff0eb6";
+    private static final String URL = "https://jsonstorage.net/api/items/48410c2c-2bdd-4bc3-971c-ba378078e50b";
 
     private RecyclerView recyclerView;
     private List<Movie> showtimelist;
@@ -75,6 +76,7 @@ public class MovieShowTimeFragment extends Fragment  {
     private String setByDateName = " ";
     private boolean setBySearch = false;
 
+    private ProgressBar progress;
     public MovieShowTimeFragment() {
         // Required empty public constructor
     }
@@ -110,6 +112,8 @@ public class MovieShowTimeFragment extends Fragment  {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_showtime, container, false);
+        progress = view.findViewById(R.id.progressBar1);
+
         itemsList = new ArrayList<>();
         items = new ArrayList<>();
         listViewShowtime = view.findViewById(R.id.showtimelist);
@@ -166,6 +170,7 @@ public class MovieShowTimeFragment extends Fragment  {
 
                             if(movieName.equals(moviename) || (setBySearch == true && setByMovie.equals(movieName)))
                             {
+                                progress.setVisibility(View.GONE);
                                 if(showDateshref.contains("tab_0"))
                                 {
 
