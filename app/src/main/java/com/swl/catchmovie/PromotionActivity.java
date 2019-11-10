@@ -41,10 +41,10 @@ public class PromotionActivity extends AppCompatActivity {
         adapter = new ParentRecyclerAdapter(itemsArrayList, PromotionActivity.this);
         recyclerView.setAdapter(adapter);
         setData();
-
+        MainActivity mainActivity = new MainActivity();
         toolbar = getSupportActionBar();
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        BottomNavigationView navigation = mainActivity.getNavigation();
+        navigation.setOnNavigationItemSelectedListener(mainActivity.getmOnNavigationItemSelectedListener());
 
 
         // attaching bottom sheet behaviour - hide / show on scroll
