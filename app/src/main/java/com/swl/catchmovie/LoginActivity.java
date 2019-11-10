@@ -15,6 +15,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
+import com.swl.catchmovie.fragment.ProfileFragment;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -69,7 +70,7 @@ public class LoginActivity extends AppCompatActivity {
         try {
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
             // Signed in successfully, show authenticated UI.
-            startActivity(new Intent(LoginActivity.this, ProfileActivity.class));
+            startActivity(new Intent(LoginActivity.this, MainActivity.class));
         } catch (ApiException e) {
             // The ApiException status code indicates the detailed failure reason.
             // refer to the GoogleSignInStatusCodes class reference for more info.
@@ -84,7 +85,7 @@ public class LoginActivity extends AppCompatActivity {
         // the GoogleSignInAccount will be non-null.
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
         if (account != null) {
-            startActivity(new Intent(LoginActivity.this, ProfileActivity.class));
+            startActivity(new Intent(LoginActivity.this, MainActivity.class));
         }
         super.onStart();
     }
