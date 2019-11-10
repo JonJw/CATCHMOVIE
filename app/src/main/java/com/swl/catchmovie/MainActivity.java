@@ -70,7 +70,6 @@ public class MainActivity extends AppCompatActivity {
                     return true;
                 case R.id.navigation_profile:
                     toolbar.setTitle("Profile");
-<<<<<<< redirectiontowebsite
                     fragment = new ProfileFragment();
                     loadFragment(fragment);
                     //fragment = new ProfileFragment();
