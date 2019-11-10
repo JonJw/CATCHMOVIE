@@ -73,12 +73,10 @@ public class MainActivity extends AppCompatActivity {
 <<<<<<< redirectiontowebsite
                     fragment = new ProfileFragment();
                     loadFragment(fragment);
-=======
                     //fragment = new ProfileFragment();
-                    Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
-                    startActivity(intent);
+                   // Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
+                   // startActivity(intent);
                     //loadFragment(fragment);
->>>>>>> master
                     return true;
             }
 
