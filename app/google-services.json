@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "641644150921-i7i61slm9vun8fbaisrhfosemt3fvj9m.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.swl.catchmovie",
+            "certificate_hash": "85c174ae82e79adfff01c586ea0a444ab5d8ea24"
+          }
+        },
+        {
           "client_id": "641644150921-b65c9ms7n948is6i6psguf7q6kp4flmp.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
