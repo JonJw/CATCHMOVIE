@@ -77,6 +77,7 @@ public class MovieShowTimeFragment extends Fragment  {
     private String setByDateName = " ";
     private boolean setBySearch = false;
 
+    private ProgressBar progress;
     public MovieShowTimeFragment() {
         // Required empty public constructor
     }
