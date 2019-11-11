@@ -44,8 +44,8 @@ public class MovieFragment extends Fragment implements PopupMenu.OnMenuItemClick
     private static final String TAG = "MovieFragment";
     //private static final String TAG = MovieFragment.class.getSimpleName();
 
-    // url to fetch shopping items
-    private static final String URL = "https://jsonstorage.net/api/items/dc5c48fe-4c19-405f-9c88-588e9b526ce5";
+    // url to fetch movie items
+    private static final String URL = "https://jsonstorage.net/api/items/1a483cd5-09aa-470c-aee6-5e0e47b3418f";
 
     private RecyclerView recyclerView;
     private List<Movie> itemsList;
@@ -233,7 +233,7 @@ public class MovieFragment extends Fragment implements PopupMenu.OnMenuItemClick
                 Glide.with(context)
                         .load(movie.getImage())
                         .into(holder.thumbnail);
-             //   Toast.makeText(context, movie.getTitle(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, movie.getTitle(), Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(context, MovieDetailsActivity.class);
                 intent.putExtra("image_url", movie.getImage());
                 intent.putExtra("movie_name", movie.getTitle());
@@ -260,7 +260,7 @@ public class MovieFragment extends Fragment implements PopupMenu.OnMenuItemClick
                     public void onClick(View v) {
                         Log.d(TAG, "onClick: clicked on: " + movie.getTitle());
 
-                     //   Toast.makeText(context, movie.getTitle(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, movie.getTitle(), Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(context, MovieDetailsActivity.class);
                         intent.putExtra("image_url", movie.getImage());
                         intent.putExtra("movie_name", movie.getTitle());

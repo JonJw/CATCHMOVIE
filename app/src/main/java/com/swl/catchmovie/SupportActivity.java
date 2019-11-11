@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.swl.catchmovie.FirebaseDAO.CatchMovieDAO;
 import com.swl.catchmovie.FirebaseDAO.RatingDAO;
+import com.swl.catchmovie.fragment.ProfileFragment;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -116,7 +117,7 @@ public class SupportActivity extends AppCompatActivity {
                                                         "Thank you for rating our app!",
                                                         Toast.LENGTH_SHORT).show();
 
-                                                startActivity(new Intent(SupportActivity.this, ProfileActivity.class));
+                                                startActivity(new Intent(SupportActivity.this, MainActivity.class));
 
                                                 // Save to Firebase
                                                 ratingDAO.save(userRatingData);
@@ -133,7 +134,7 @@ public class SupportActivity extends AppCompatActivity {
         backtoProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(SupportActivity.this, ProfileActivity.class));
+                startActivity(new Intent(SupportActivity.this, MainActivity.class));
             }
         });
     }

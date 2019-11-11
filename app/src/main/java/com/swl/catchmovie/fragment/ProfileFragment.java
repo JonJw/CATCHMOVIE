@@ -26,7 +26,6 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.swl.catchmovie.LoginActivity;
-import com.swl.catchmovie.ProfileActivity;
 import com.swl.catchmovie.R;
 import com.swl.catchmovie.SupportActivity;
 import com.swl.catchmovie.helper.BottomNavigationBehavior;
@@ -95,7 +94,7 @@ public class ProfileFragment extends Fragment {
             nameTV.setText("Welcome Back! " + personName);
             emailTV.setText("Email: " + personEmail);
             //idTV.setText("ID: "+personId);
-            //photoIV.setImageURI(personPhoto);
+            photoIV.setImageURI(personPhoto);
             Glide.with(getActivity()).load(personPhoto).into(photoIV);
         }
 
@@ -113,7 +112,6 @@ public class ProfileFragment extends Fragment {
             }
         });
 
-        view.performClick();   
         return view;
     }
 
