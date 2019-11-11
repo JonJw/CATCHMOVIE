@@ -77,7 +77,6 @@ public class MovieShowTimeFragment extends Fragment  {
     private String setByDateName = " ";
     private boolean setBySearch = false;
 
-    private ProgressBar progress;
     public MovieShowTimeFragment() {
         // Required empty public constructor
     }
@@ -493,76 +492,7 @@ public class MovieShowTimeFragment extends Fragment  {
                 day4.setTextColor(Color.BLACK);
             }
         });
-
-
         return view;
     }
 
-
-    /*
-    public void showShowtimeForDay(View view)
-    {
-        Button day = (Button) view;
-
-        if(day.getTag().toString() == "day2")
-        {
-            listViewShowtime.setAdapter(adapter2);
-        }
-        else if(day.getTag().toString() == "day3")
-        {
-            listViewShowtime.setAdapter(adapter3);
-        }
-        else if(day.getTag().toString() == "day4")
-        {
-            listViewShowtime.setAdapter(adapter4);
-        }
-        else if(day.getTag().toString() == "day5")
-        {
-            listViewShowtime.setAdapter(adapter5);
-        }
-        listViewShowtime.setVisibility(View.VISIBLE);
-
-    }
-
-    public ArrayAdapter<String> getAdapter1() {
-        return adapter1;
-    }
-
-    public ArrayAdapter<String> getAdapter2() {
-        return adapter2;
-    }
-
-    public ArrayAdapter<String> getAdapter3() {
-        return adapter3;
-    }
-
-    public ArrayAdapter<String> getAdapter4() {
-        return adapter4;
-    }
-
-    public ArrayAdapter<String> getAdapter5() {
-        return adapter5;
-    }
-
-    public ArrayList<String> getListDay1() {
-        return listDay1;
-    }
-
-    public ArrayList<String> getListDay2() {
-        return listDay2;
-    }
-
-    public ArrayList<String> getListDay3() {
-        return listDay3;
-    }
-
-    public ArrayList<String> getListDay4() {
-        return listDay4;
-    }
-
-    public ArrayList<String> getListDay5() {
-        return listDay5;
-    }
-
- */
 }
