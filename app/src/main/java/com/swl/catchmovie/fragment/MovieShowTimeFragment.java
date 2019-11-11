@@ -74,6 +74,7 @@ public class MovieShowTimeFragment extends Fragment  {
 
     private String setByMovie = " ";
     private int setByDate = -1;
+    private String setByDateName = " ";
     private boolean setBySearch = false;
 
     public MovieShowTimeFragment() {
@@ -92,11 +93,12 @@ public class MovieShowTimeFragment extends Fragment  {
         this.moviename = moviename;
     }
 
-    public MovieShowTimeFragment(String setByMovieName, int setByDatePos)
+    public MovieShowTimeFragment(String setByMovieName, int setByDatePos, String setByDateName)
     {
         setByMovie = setByMovieName;
         setByDate = setByDatePos;
         setBySearch = true;
+        this.setByDateName = setByDateName;
     }
 
 
@@ -293,25 +295,46 @@ public class MovieShowTimeFragment extends Fragment  {
                             if(setByDate == 0 )
                             {
                                 day1.performClick();
+                                if(listDay1.isEmpty())
+                                {
+                                    Toast.makeText(getActivity(), setByMovie + " is not playing on " + setByDateName, Toast.LENGTH_LONG).show();
+                                }
                             }
                             if(setByDate == 1)
                             {
                                 day2.performClick();
+                                if(listDay2.isEmpty())
+                                {
+                                    Toast.makeText(getActivity(), setByMovie + " is not playing on " + setByDateName, Toast.LENGTH_LONG).show();
+                                }
                             }
                             if(setByDate == 2)
                             {
                                 day3.performClick();
+                                if(listDay3.isEmpty())
+                                {
+                                    Toast.makeText(getActivity(), setByMovie + " is not playing on " + setByDateName, Toast.LENGTH_LONG).show();
+                                }
                             }
                             if(setByDate == 3)
                             {
                                 day4.performClick();
+                                if(listDay4.isEmpty())
+                                {
+                                    Toast.makeText(getActivity(), setByMovie + " is not playing on " + setByDateName, Toast.LENGTH_LONG).show();
+                                }
                             }
 
                             if(setByDate == 4)
                             {
                                 day5.performClick();
+                                if(listDay5.isEmpty())
+                                {
+                                    Toast.makeText(getActivity(), setByMovie + " is not playing on " + setByDateName, Toast.LENGTH_LONG).show();
+                                }
                             }
                         }
+
 
                         // adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, android.R.id.text1, list);
                         //listViewMovie.setAdapter(adapter);
