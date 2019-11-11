@@ -2,26 +2,24 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
-
+    android:layout_height="wrap_content">
     <androidx.cardview.widget.CardView
         android:id="@+id/cardview_id"
+        android:clickable="true"
+        android:foreground="?android:attr/selectableItemBackground"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="3dp"
         android:layout_marginRight="3dp"
-        android:clickable="true"
-        android:foreground="?android:attr/selectableItemBackground"
         app:cardCornerRadius="3dp"
         app:cardElevation="15dp">
-
         <LinearLayout
             android:layout_width="120dp"
-            android:layout_height="235dp"
-            android:background="#a3a3a3"
-            android:orientation="vertical">
+            android:layout_height="230dp"
+            android:orientation="vertical"
+            android:background="#333">
 
             <ImageView
                 android:id="@+id/day_img"
@@ -33,11 +31,11 @@
                 android:id="@+id/daytxt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
+                android:textStyle="normal"
+                android:textColor="#FFF"
                 android:text="Day"
-                android:textColor="#000"
-                android:textSize="20sp"
-                android:textStyle="normal" />
+                android:gravity="center"
+                android:textSize="20sp"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 

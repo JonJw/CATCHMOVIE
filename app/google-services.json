@@ -8,12 +8,65 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:641644150921:android:70623b5cfc8d8f6c350658",
+        "android_client_info": {
+          "package_name": "com.example.promo_page_take_2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "641644150921-gdji1qdi47959hpeputbkjiebl3hvlbt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.promo_page_take_2",
+            "certificate_hash": "d51273e95510287d4ee8aec9bfb8dd739cff6db8"
+          }
+        },
+        {
+          "client_id": "641644150921-utj94838vfnhi753oqtgn2e3to1sinfe.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDYdTinmkiKp0VSrYbCFvcpwQyqwdNcUKg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "641644150921-utj94838vfnhi753oqtgn2e3to1sinfe.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:641644150921:android:b4333febf471fd01350658",
         "android_client_info": {
           "package_name": "com.swl.catchmovie"
         }
       },
       "oauth_client": [
+        {
+          "client_id": "641644150921-tsnt8lk15ehoo8br225bvcmcn5q72mao.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.swl.catchmovie",
+            "certificate_hash": "d51273e95510287d4ee8aec9bfb8dd739cff6db8"
+          }
+        },
+        {
+          "client_id": "641644150921-0vkgvmkp58rq1berjjiuc34s9otijie4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.swl.catchmovie",
+            "certificate_hash": "66f8b57f769af0a847160bdf4b82131f1403767c"
+          }
+        },
         {
           "client_id": "641644150921-i7i61slm9vun8fbaisrhfosemt3fvj9m.apps.googleusercontent.com",
           "client_type": 1,
