@@ -54,6 +54,7 @@ public class SearchFragment extends Fragment {
     private boolean clickedSelectDate = false;
 
     private String movieToGo = "";
+
     private boolean choosenMovie = false;
     private boolean choosenDate = false;
 
@@ -167,49 +168,20 @@ public class SearchFragment extends Fragment {
                 else if (choosenMovie == true && choosenDate == true)
                 {
                     MainActivity mainActivity = new MainActivity();
-                    loadFragment(new MovieShowTimeFragment(movieToGo, clickedDate, clickedDateName));
                     Log.d(TAG, "Go to movieshowtime");
+                    loadFragment(new MovieShowTimeFragment(movieToGo, clickedDate, clickedDateName));
+                }
+                else if(choosenMovie == false && choosenDate == true)
+                {
+                    Toast.makeText(getActivity(), "Please select the movie", Toast.LENGTH_SHORT).show();
+                }
+                else if(choosenMovie == false && choosenDate == false)
+                {
+                    Toast.makeText(getActivity(), "Please select the movie and the date", Toast.LENGTH_SHORT).show();
                 }
             }
         });
-/*
-        searchViewMovie.setOnQueryTextListener(new Button.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                searchViewDate.setVisibility(View.INVISIBLE);
-                listViewMovie.setVisibility(View.VISIBLE);
-                searchButton.setVisibility(View.INVISIBLE);
-                    if (list.contains(query)) {
-                        adapter.getFilter().filter(query);
-                    } else {
-                        Toast.makeText(getActivity(), "No Match found", Toast.LENGTH_LONG).show();
 
-                    }
-
-                return false;
-            }
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                //    adapter.getFilter().filter(newText);
-                searchViewDate.setVisibility(View.INVISIBLE);
-                searchButton.setVisibility(View.INVISIBLE);
-                listViewMovie.setVisibility(View.VISIBLE);
-                return false;
-            }
-        });
-
-        searchViewMovie.setOnCloseListener(new SearchView.OnCloseListener() {
-            @Override
-            public boolean onClose() {
-
-                listViewMovie.setVisibility(View.INVISIBLE);
-                searchViewDate.setVisibility(View.VISIBLE);
-                searchButton.setVisibility(View.VISIBLE);
-                return false;
-            }
-        });
-
- */
         listViewMovie.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l)
@@ -239,8 +211,6 @@ public class SearchFragment extends Fragment {
                 searchButton.setVisibility(View.VISIBLE);
             }
         });
-
-
         return view;
     }
 
@@ -295,7 +265,6 @@ public class SearchFragment extends Fragment {
 
                         }
                         adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, android.R.id.text1, list);
-
                         listViewMovie.setAdapter(adapter);
                         // refreshing recycler view
                     }
@@ -310,9 +279,6 @@ public class SearchFragment extends Fragment {
 
         MyApplication.getInstance().addToRequestQueue(request);
     }
-
-
-
 
     private void loadFragment(Fragment fragment) {
         // load fragment

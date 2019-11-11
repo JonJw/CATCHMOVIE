@@ -67,6 +67,7 @@ public class MovieShowTimeFragment extends Fragment  {
     private ArrayList<String> listDay4;
     private ArrayList<String> listDay5;
 
+    private ProgressBar progress;
 
     private String movieName = null;
     private String showDateshref = null;
@@ -113,7 +114,6 @@ public class MovieShowTimeFragment extends Fragment  {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_showtime, container, false);
         progress = view.findViewById(R.id.progressBar1);
-
         itemsList = new ArrayList<>();
         items = new ArrayList<>();
         listViewShowtime = view.findViewById(R.id.showtimelist);
@@ -285,6 +285,10 @@ public class MovieShowTimeFragment extends Fragment  {
                                 }
 
                             }
+                            Log.d(TAG,"This is the listDay1:"+ listDay1.toString());
+
+
+
                         }
 
                         if(setBySearch)
@@ -294,7 +298,7 @@ public class MovieShowTimeFragment extends Fragment  {
                                 day1.performClick();
                                 if(listDay1.isEmpty())
                                 {
-                                    Toast.makeText(getActivity(), setByMovie + " is not playing on " + setByDateName, Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getActivity(), setByMovie + " is not playing on " + setByDateName, Toast.LENGTH_LONG).show();
                                 }
                             }
                             if(setByDate == 1)
@@ -302,7 +306,7 @@ public class MovieShowTimeFragment extends Fragment  {
                                 day2.performClick();
                                 if(listDay2.isEmpty())
                                 {
-                                    Toast.makeText(getActivity(), setByMovie + " is not playing on " + setByDateName, Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getActivity(), setByMovie + " is not playing on " + setByDateName, Toast.LENGTH_LONG).show();
                                 }
                             }
                             if(setByDate == 2)
@@ -310,7 +314,7 @@ public class MovieShowTimeFragment extends Fragment  {
                                 day3.performClick();
                                 if(listDay3.isEmpty())
                                 {
-                                    Toast.makeText(getActivity(), setByMovie + " is not playing on " + setByDateName, Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getActivity(), setByMovie + " is not playing on " + setByDateName, Toast.LENGTH_LONG).show();
                                 }
                             }
                             if(setByDate == 3)
@@ -318,7 +322,7 @@ public class MovieShowTimeFragment extends Fragment  {
                                 day4.performClick();
                                 if(listDay4.isEmpty())
                                 {
-                                    Toast.makeText(getActivity(), setByMovie + " is not playing on " + setByDateName, Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getActivity(), setByMovie + " is not playing on " + setByDateName, Toast.LENGTH_LONG).show();
                                 }
                             }
 
@@ -327,11 +331,15 @@ public class MovieShowTimeFragment extends Fragment  {
                                 day5.performClick();
                                 if(listDay5.isEmpty())
                                 {
-                                    Toast.makeText(getActivity(), setByMovie + " is not playing on " + setByDateName, Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getActivity(), setByMovie + " is not playing on " + setByDateName, Toast.LENGTH_LONG).show();
                                 }
                             }
                         }
 
+
+                        // adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, android.R.id.text1, list);
+                        //listViewMovie.setAdapter(adapter);
+                        //Toast.makeText(getActivity(),"This is num of items: " +itemsList.size(), Toast.LENGTH_SHORT).show();
                         // refreshing recycler view
                         //set default display to TODAY
                         if(setBySearch == false)
@@ -423,6 +431,8 @@ public class MovieShowTimeFragment extends Fragment  {
         });
 
 
+
+
         day3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -484,6 +494,75 @@ public class MovieShowTimeFragment extends Fragment  {
             }
         });
 
+
         return view;
     }
+
+
+    /*
+    public void showShowtimeForDay(View view)
+    {
+        Button day = (Button) view;
+
+        if(day.getTag().toString() == "day2")
+        {
+            listViewShowtime.setAdapter(adapter2);
+        }
+        else if(day.getTag().toString() == "day3")
+        {
+            listViewShowtime.setAdapter(adapter3);
+        }
+        else if(day.getTag().toString() == "day4")
+        {
+            listViewShowtime.setAdapter(adapter4);
+        }
+        else if(day.getTag().toString() == "day5")
+        {
+            listViewShowtime.setAdapter(adapter5);
+        }
+        listViewShowtime.setVisibility(View.VISIBLE);
+
+    }
+
+    public ArrayAdapter<String> getAdapter1() {
+        return adapter1;
+    }
+
+    public ArrayAdapter<String> getAdapter2() {
+        return adapter2;
+    }
+
+    public ArrayAdapter<String> getAdapter3() {
+        return adapter3;
+    }
+
+    public ArrayAdapter<String> getAdapter4() {
+        return adapter4;
+    }
+
+    public ArrayAdapter<String> getAdapter5() {
+        return adapter5;
+    }
+
+    public ArrayList<String> getListDay1() {
+        return listDay1;
+    }
+
+    public ArrayList<String> getListDay2() {
+        return listDay2;
+    }
+
+    public ArrayList<String> getListDay3() {
+        return listDay3;
+    }
+
+    public ArrayList<String> getListDay4() {
+        return listDay4;
+    }
+
+    public ArrayList<String> getListDay5() {
+        return listDay5;
+    }
+
+ */
 }
