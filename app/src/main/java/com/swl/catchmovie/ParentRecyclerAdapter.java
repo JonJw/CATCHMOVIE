@@ -157,6 +157,7 @@ public class ParentRecyclerAdapter extends RecyclerView.Adapter<ParentRecyclerAd
 
         switch (parentArrayList.get(position)) {
             case "All Current":
+                daysArrayList.clear();
                 for (int i = 0; i < imgList_name.size(); i++) {
                     daysArrayList.add(new PromotionInfo(imgList_name.get(i), imgList_desc.get(i), imgList_url.get(i)));
                     //System.out.println(imgList_url.get(i) + "\t" + imgList_name.get(i));
@@ -166,6 +167,7 @@ public class ParentRecyclerAdapter extends RecyclerView.Adapter<ParentRecyclerAd
                 childRecyclerAdapter.notifyDataSetChanged();
                 break;
             case "Discounts":
+                daysArrayList_disc.clear();
                 for (int i = 0; i < imgList_name.size(); i++) {
                     daysArrayList_disc.add(new PromotionInfo(imgList_name.get(i), imgList_desc.get(i), imgList_url.get(i)));
                     //System.out.println(imgList_url.get(i) + "\t" + imgList_name.get(i));
@@ -176,6 +178,7 @@ public class ParentRecyclerAdapter extends RecyclerView.Adapter<ParentRecyclerAd
                 break;
 
             case "Movie Perks":
+                daysArrayList_perks.clear();
                 for (int i = 0; i < imgList_name.size(); i++) {
                     daysArrayList_perks.add(new PromotionInfo(imgList_name.get(i), imgList_desc.get(i), imgList_url.get(i)));
                     //System.out.println(imgList_url.get(i) + "\t" + imgList_name.get(i));
@@ -186,6 +189,7 @@ public class ParentRecyclerAdapter extends RecyclerView.Adapter<ParentRecyclerAd
                 break;
 
             case "Member's Exclusives":
+                daysArrayList_mem.clear();
                 for (int i = 0; i < imgList_name.size(); i++) {
                     daysArrayList_mem.add(new PromotionInfo(imgList_name.get(i), imgList_desc.get(i), imgList_url.get(i)));
                     //System.out.println(imgList_url.get(i) + "\t" + imgList_name.get(i));
@@ -196,6 +200,7 @@ public class ParentRecyclerAdapter extends RecyclerView.Adapter<ParentRecyclerAd
                 break;
 
             case "Food and Beverages":
+                daysArrayList_fnb.clear();
                 for (int i = 0; i < imgList_name.size(); i++) {
                     daysArrayList_fnb.add(new PromotionInfo(imgList_name.get(i), imgList_desc.get(i), imgList_url.get(i)));
                     //System.out.println(imgList_url.get(i) + "\t" + imgList_name.get(i));
