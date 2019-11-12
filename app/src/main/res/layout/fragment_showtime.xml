@@ -84,8 +84,8 @@
 
     <ListView
         android:id="@+id/showtimelist"
-        android:layout_width="398dp"
-        android:layout_height="546dp"
+        android:layout_width="365dp"
+        android:layout_height="521dp"
         android:layout_marginStart="5dp"
         android:layout_marginLeft="5dp"
         android:layout_marginTop="176dp"
