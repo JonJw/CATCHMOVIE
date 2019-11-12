@@ -51,6 +51,15 @@
             android:clipToPadding="false"
             android:scrollbars="vertical" />
 
+        <ProgressBar
+            android:id="@+id/progressBar1"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:layout_marginTop="100dp"/>
+
     </LinearLayout>
 
 </androidx.core.widget.NestedScrollView>

@@ -304,11 +304,11 @@ public class MovieFragment extends Fragment implements PopupMenu.OnMenuItemClick
         switch(menuItem.getItemId()){
             case R.id.nowshowing:
                 status.setText("Now Showing");
-                Toast.makeText(getActivity(), "NowShowing Movies", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Now Showing Movies", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.upshowing:
                 status.setText("Upcoming");
-                Toast.makeText(getActivity(), "UpComing Movies", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Upcoming Movies", Toast.LENGTH_SHORT).show();
 
                 fragment = new UpcomingMovieFragment();
                 Log.d(TAG, "Calling loadFragment");

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -22,6 +23,10 @@ public class onclick_promotion extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_onclick_promotion);
+
+        //add back button
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         tvName = (TextView)findViewById(R.id.promoName_id);
         tvDescription = (TextView)findViewById(R.id.promoDescription_id);
@@ -42,5 +47,15 @@ public class onclick_promotion extends AppCompatActivity {
                 .apply(new RequestOptions().override(348,528))
                 .placeholder(R.drawable.ic_launcher_foreground)
                 .into(imgView);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == android.R.id.home){
+            //ends the activity
+            this.finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

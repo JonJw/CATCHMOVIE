@@ -25,9 +25,8 @@
                 android:background="#2d2d2d"
                 android:scaleType="centerCrop" />
             <TextView
-                android:layout_width="348dp"
+                android:layout_width="330dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
                 android:id="@+id/promoName_id"
                 android:text="Promotion Name"
                 android:textStyle="bold"
@@ -35,14 +34,13 @@
                 android:textColor="#FFF"
                 android:layout_marginTop="15dp"/>
             <TextView
-                android:layout_width="348dp"
+                android:layout_width="330dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
                 android:paddingTop="15dp"
                 android:id="@+id/promoDescription_id"
                 android:text="Promotion Description"
                 android:textColor="#FFF"
-                android:textSize="18dp"/>
+                android:textSize="16dp"/>
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>
