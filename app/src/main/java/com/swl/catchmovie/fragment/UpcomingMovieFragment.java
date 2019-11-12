@@ -46,7 +46,7 @@ public class UpcomingMovieFragment extends Fragment implements PopupMenu.OnMenuI
     //private static final String TAG = MovieFragment.class.getSimpleName();
 
     // url to fetch shopping items
-    private static final String URL = "https://api.myjson.com/bins/kxes4";
+    private static final String URL = "https://jsonstorage.net/api/items/f211b380-9670-4210-a4e0-d53a8abca935";
 
     private RecyclerView recyclerView;
     private List<Movie> itemsList;

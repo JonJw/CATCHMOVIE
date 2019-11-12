@@ -44,7 +44,7 @@ public class MovieFragment extends Fragment implements PopupMenu.OnMenuItemClick
     private static final String TAG = "MovieFragment";
     //private static final String TAG = MovieFragment.class.getSimpleName();
 
-    private static final String URL = "https://jsonstorage.net/api/items/1a483cd5-09aa-470c-aee6-5e0e47b3418f";
+    private static final String URL = "https://jsonstorage.net/api/items/bb5dec45-db3d-4397-b916-8b0bcb81e7de";
 
     private RecyclerView recyclerView;
     private List<Movie> itemsList;
