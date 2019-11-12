@@ -27,6 +27,7 @@
             <TextView
                 android:layout_width="348dp"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
                 android:id="@+id/promoName_id"
                 android:text="Promotion Name"
                 android:textStyle="bold"
@@ -36,6 +37,7 @@
             <TextView
                 android:layout_width="348dp"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
                 android:paddingTop="15dp"
                 android:id="@+id/promoDescription_id"
                 android:text="Promotion Description"

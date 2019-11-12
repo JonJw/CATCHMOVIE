@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ActionBar toolbar;
     private BottomNavigationView navigation;
-
+    private Fragment fragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,17 +39,27 @@ public class MainActivity extends AppCompatActivity {
         layoutParams.setBehavior(new BottomNavigationBehavior());
 
         // load the store fragment by default
+        navigation.setSelectedItemId(R.id.navigation_profile);
         toolbar.setTitle("Profile");
-        loadFragment(new ProfileFragment());
+        fragment = new ProfileFragment();
+        loadFragment(fragment);
+
+
     }
+
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            Fragment fragment;
+
             switch (item.getItemId()) {
+                case R.id.navigation_profile:
+                    toolbar.setTitle("Profile");
+                    fragment = new ProfileFragment();
+                    loadFragment(fragment);
+                    return true;
                 case R.id.navigation_search:
                     toolbar.setTitle("Search");
                     fragment = new SearchFragment();
@@ -67,11 +77,6 @@ public class MainActivity extends AppCompatActivity {
                     //startActivity(intentPromo);
                     loadFragment(fragment);
                     return true;
-                case R.id.navigation_profile:
-                    toolbar.setTitle("Profile");
-                    fragment = new ProfileFragment();
-                    loadFragment(fragment);
-                    return true;
             }
 
             return false;
@@ -79,8 +84,8 @@ public class MainActivity extends AppCompatActivity {
     };
 
 
-    public BottomNavigationView getNavigation() {
-        return navigation;
+    public BottomNavigationView.OnNavigationItemSelectedListener getNavigation() {
+        return getmOnNavigationItemSelectedListener();
     }
 
     public BottomNavigationView.OnNavigationItemSelectedListener getmOnNavigationItemSelectedListener() {

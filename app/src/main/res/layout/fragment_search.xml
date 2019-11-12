@@ -42,7 +42,7 @@
 
     <ListView
         android:id="@+id/listViewMovie"
-        android:layout_width="346dp"
+        android:layout_width="300dp"
         android:layout_height="367dp"
         android:layout_below="@+id/searchViewMovie"
         android:layout_marginLeft="25dp"
@@ -55,7 +55,7 @@
 
     <ListView
         android:id="@+id/listViewDate"
-        android:layout_width="339dp"
+        android:layout_width="300dp"
         android:layout_height="327dp"
         android:layout_marginLeft="25dp"
         android:layout_marginTop="250dp"
