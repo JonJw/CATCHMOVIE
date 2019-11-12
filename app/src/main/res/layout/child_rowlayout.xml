@@ -29,13 +29,15 @@
 
             <TextView
                 android:id="@+id/daytxt"
+                android:paddingTop="3dp"
+                android:paddingBottom="3dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textStyle="normal"
                 android:textColor="#FFF"
                 android:text="Day"
                 android:gravity="center"
-                android:textSize="20sp"/>
+                android:textSize="18sp"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
