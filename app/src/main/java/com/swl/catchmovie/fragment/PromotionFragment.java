@@ -48,20 +48,6 @@ public class PromotionFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-//        // Inflate the layout for this fragment
-//        View view = inflater.inflate(R.layout.fragment_promotion, container, false);
-//        TextView txtOpen = (TextView) view.findViewById(R.id.promotion);
-//        txtOpen.setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View v){
-//                Intent intent = new Intent(getActivity(), PromotionActivity.class);
-//                //intent.putExtra("Testing","123");
-//                startActivity(intent);
-//            }
-//        });
-//        return view;
-        //setContentView(R.layout.activity_promotion);
-        //layoutManager = new LinearLayoutManager(PromotionFragment.this);
         View view = inflater.inflate(R.layout.fragment_promotion, container, false);
         recyclerView = (RecyclerView) view.findViewById(R.id.ParentRV);
 
@@ -72,33 +58,13 @@ public class PromotionFragment extends Fragment {
         recyclerView.setAdapter(adapter);
         setData();
         MainActivity mainActivity = new MainActivity();
-        //toolbar = getSupportActionBar();
-        //BottomNavigationView navigation = mainActivity.getNavigation();
-        //navigation.setOnNavigationItemSelectedListener(mainActivity.getmOnNavigationItemSelectedListener());
-
-
-        // attaching bottom sheet behaviour - hide / show on scroll
-        //CoordinatorLayout.LayoutParams layoutParams = (CoordinatorLayout.LayoutParams) navigation.getLayoutParams();
-        //layoutParams.setBehavior(new BottomNavigationBehavior());
-
-        // load the store fragment by default
-        //toolbar.setTitle("Promotion");
-        //loadFragment(new PromotionFragment());
 
         return view;
 
     }
-    //@Override
-//    public void onClick (View v) {
-//
-//        Intent i = new Intent(getActivity(), PromotionActivity.class);
-//        startActivity(i);
-//        //((Activity) getActivity()).overridePendingTransition(0, 0);
-//
-//    }
 
     private void setData() {
-        String[] items = {"Current", "Discounts", "Movie Perks", "Food and Beverages", "Member's Exclusives", "Partnerships"};
+        String[] items = {"Discounts", "Movie Perks", "Food and Beverages", "Member's Exclusives", "Partnerships","All Current"};
         for (int i = 0; i < items.length; i++) {
             itemsArrayList.add(items[i]);
         }

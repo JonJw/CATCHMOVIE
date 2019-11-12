@@ -4,9 +4,9 @@ public class PromotionInfo {
     private String PromotionInfo_name;
     //    private  String PromotionInfo_url;
     private String Promotion_Description;
-    private int Promotion_thumbnail;
+    private String Promotion_thumbnail;
 
-    public PromotionInfo(String promotionInfo_name, String promotion_Description, int promotion_thumbnail) {
+    public PromotionInfo(String promotionInfo_name, String promotion_Description, String promotion_thumbnail){
         PromotionInfo_name = promotionInfo_name;
         Promotion_Description = promotion_Description;
         Promotion_thumbnail = promotion_thumbnail;
@@ -20,14 +20,14 @@ public class PromotionInfo {
         Promotion_Description = promotion_Description;
     }
 
-    public PromotionInfo() {
+    public PromotionInfo(){
     }
 
-    public int getPromotion_thumbnail() {
+    public String getPromotion_thumbnail() {
         return Promotion_thumbnail;
     }
 
-    public void setPromotion_thumbnail(int promotion_thumbnail) {
+    public void setPromotion_thumbnail(String promotion_thumbnail) {
         Promotion_thumbnail = promotion_thumbnail;
     }
 
