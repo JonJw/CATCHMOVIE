@@ -54,7 +54,7 @@ public class SearchFragment extends Fragment {
     private boolean clickedSelectDate = false;
 
     private String movieToGo = "";
-
+    private Button searchButton;
     private boolean choosenMovie = false;
     private boolean choosenDate = false;
 
@@ -90,7 +90,7 @@ public class SearchFragment extends Fragment {
 
         final Button searchViewMovie = view.findViewById(R.id.searchViewMovie);
         final Button searchViewDate = view.findViewById(R.id.searchViewDate);
-        final Button searchButton = view.findViewById(R.id.Search);
+        searchButton = view.findViewById(R.id.Search);
         listViewMovie = view.findViewById(R.id.listViewMovie);
         listViewDate = view.findViewById(R.id.listViewDate);
         //  MovieFragment movieFragment = new MovieFragment();
@@ -100,6 +100,7 @@ public class SearchFragment extends Fragment {
         list = new ArrayList<String>();
         listDate = new ArrayList<String>();
         getCurrentDates();
+        SearchButton();
         fetchStoreItems();
 
 
@@ -116,7 +117,6 @@ public class SearchFragment extends Fragment {
                     listViewMovie.setVisibility(View.VISIBLE);
                     searchButton.setVisibility(View.INVISIBLE);
                     clickedSelectMovie = true;
-
                 }
                 else
                 {
@@ -154,33 +154,6 @@ public class SearchFragment extends Fragment {
             }
         });
 
-
-        searchButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                if(choosenMovie == true && choosenDate == false)
-                {
-                    MainActivity mainActivity = new MainActivity();
-                    loadFragment(new MovieFragment(clickedMovie));
-                    Log.d(TAG, "Go to moviefragment");
-                }
-                else if (choosenMovie == true && choosenDate == true)
-                {
-                    MainActivity mainActivity = new MainActivity();
-                    Log.d(TAG, "Go to movieshowtime");
-                    loadFragment(new MovieShowTimeFragment(movieToGo, clickedDate, clickedDateName));
-                }
-                else if(choosenMovie == false && choosenDate == true)
-                {
-                    Toast.makeText(getActivity(), "Please select the movie", Toast.LENGTH_SHORT).show();
-                }
-                else if(choosenMovie == false && choosenDate == false)
-                {
-                    Toast.makeText(getActivity(), "Please select the movie and the date", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
 
         listViewMovie.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -220,6 +193,41 @@ public class SearchFragment extends Fragment {
         cal.setTime(date);
         cal.add(Calendar.DATE, days); //minus number would decrement the days
         return cal.getTime();
+    }
+
+    private void SearchButton()
+    {
+        searchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(choosenMovie)
+                {
+                    if(choosenDate)
+                    {
+                        MainActivity mainActivity = new MainActivity();
+                        Log.d(TAG, "Go to movieshowtime");
+                        loadFragment(new MovieShowTimeFragment(movieToGo, clickedDate, clickedDateName));
+                    }
+                    else
+                    {
+                        MainActivity mainActivity = new MainActivity();
+                        loadFragment(new MovieFragment(clickedMovie));
+                        Log.d(TAG, "Go to moviefragment");
+                    }
+                }
+                else
+                {
+                    if(choosenDate)
+                    {
+                        Toast.makeText(getActivity(), "Please select the movie", Toast.LENGTH_SHORT).show();
+                    }
+                    else
+                    {
+                        Toast.makeText(getActivity(), "Please select the movie and the date", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        });
     }
 
     private void getCurrentDates()
