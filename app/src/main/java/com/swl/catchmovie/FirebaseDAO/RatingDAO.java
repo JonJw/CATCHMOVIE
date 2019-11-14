@@ -29,11 +29,11 @@ public class RatingDAO implements CatchMovieDAO<UserRatingData> {
 
     @Override
     public void update(UserRatingData userRatingData, String[] params) {
-
+        mDatabase = FirebaseDatabase.getInstance().getReference("user-rating");
+        mDatabase.child(userRatingData.getUserID()).setValue(userRatingData.getUserRating());
     }
 
     @Override
     public void delete(UserRatingData userRatingData) {
-
     }
 }

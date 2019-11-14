@@ -11,6 +11,9 @@ import android.widget.TextView;
 import java.util.HashMap;
 import java.util.List;
 
+
+// This adapter class is used for creating expandable list of questions in FAQ Page (View Support)
+
 public class CustomExpandableListAdapter extends BaseExpandableListAdapter {
     private Context context;
     private List<String> expandableListTitle;
