@@ -43,7 +43,7 @@ public class MovieShowTimeFragment extends Fragment  {
     //private static final String TAG = MovieFragment.class.getSimpleName();
 
     // url to fetch movie show time
-    private static final String URL = "https://jsonstorage.net/api/items/1c837da8-2299-4477-ba0f-3984d8779d02";
+    private static final String URL = "https://jsonstorage.net/api/items/0e871540-c264-4048-b9db-88b5310fee4e";
 
     private RecyclerView recyclerView;
     private List<Movie> showtimelist;
